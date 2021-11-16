@@ -14,4 +14,6 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Route::resource('image', ImageController::class);
+Route::resource('image', ImageController::class)->only([
+    'index', 'store', 'destroy'
+]);
