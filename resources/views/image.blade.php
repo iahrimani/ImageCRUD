@@ -17,7 +17,7 @@
     <br>
     <br>
     @foreach($images as $image)
-        <img src="{{ $image->url }}" alt="Картнка">
+        <img src="{{ route('index'). '/storage/' . $image->path }}" alt="Картнка">
     @endforeach
 
     <form class="mt-3" method="post" enctype="multipart/form-data" action="{{ route('store') }}">

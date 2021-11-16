@@ -43,7 +43,6 @@ class ImageController extends Controller
         $image = Image::create([
             'name' => $request->name,
             'path' => $path,
-            'url' => route('index').  '/storage/' . $path,
         ]);
 
         return redirect(route('index'));
