@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ImageDelEvent;
 use Illuminate\Http\Request;
 use App\Models\Image;
-use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -45,7 +45,7 @@ class ImageController extends Controller
             'path' => $path,
         ]);
 
-        return redirect(route('index'));
+        return redirect(route('image.index'));
 
     }
 
@@ -91,8 +91,11 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        $image = Image::findOrfile($id)->delete();
+        $image =Image::find($id);
+        event(new ImageDelEvent($image));
 
-        return redirect(route('index'));
+        $image->delete();
+
+        return redirect()->route('image.index');
     }
 }

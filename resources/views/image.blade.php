@@ -17,10 +17,19 @@
     <br>
     <br>
     @foreach($images as $image)
-        <img src="{{ route('index'). '/storage/' . $image->path }}" alt="Картнка">
+        <img src="{{ url('/') . '/storage/' . $image->path }}" alt="Картинка">
+        <h1></h1>
+
+        <form method="POST" action="{{ route('image.destroy', $image->id) }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">
+                <i class="fa fa-trash">Удалить</i>
+            </button>
+        </form>
     @endforeach
 
-    <form class="mt-3" method="post" enctype="multipart/form-data" action="{{ route('store') }}">
+    <form class="mt-3" method="post" enctype="multipart/form-data" action="{{ route('image.store') }}">
         @csrf
         <div class="input-group mb-3">
             <span class="input-group-text">Имя картинки</span>

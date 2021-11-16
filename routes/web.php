@@ -14,4 +14,4 @@ use App\Http\Controllers\ImageController;
 |
 */
 
-Route::resource('/', ImageController::class);
+Route::resource('image', ImageController::class);
